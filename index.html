@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<!--
+	Fractal by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	
+	Documentation for Audio DOM:
+		http://www.w3schools.com/jsref/dom_obj_audio.asp
+	
+	CMD code to produce the list of files in a directory:
+		dir /b "folder name">list.txt
+	
+	CMD code to move mp3 files from sub dirrectories:
+		FOR /f "delims=" %a IN ('DIR *.mp3 /s /b') DO MOVE "%a" .
+-->
+<html>
+	<head>
+		<title>&hearts; To My LOVE &hearts;!</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<h1><a href="#">&hearts; Наташеньке &hearts;</a></h1>
+					<p>Я очень надеюсь что эта страничка тебе поможет приготовиться <br/>к твоему тяжелому экзамену и пройти твой класс! Эх... &#9825;&#9825;&#9825;</p>
+					<h3><span id="timer"/>0</span> sec.</h3>
+					<ul class="actions">
+						<li><a onclick="playRandom()" class="button big special icon fa-random">Play New</a></li>
+						<li><a onclick="getAnswer()" class="button special icon fa-exclamation">I KNOW!</a><br>the first thing in mind</li>
+					</ul>
+					<ul class="actions">
+						<li><a onclick="stop()" class="button small icon fa-stop">Stop</a></li>
+						<li><a onclick="play();" class="button small icon fa-play">Re-Play</a></li>
+						<li><a onclick="getRandomStart(); play(); " class="button small icon fa-clock-o">Different Time</a></li>
+					</ul>
+				</div>
+				<div class="image phone"><div class="inner"><img src="images/myLove.gif" alt="" /></div></div>
+			</header>
+
+			<!-- Two -->
+			<section id="two" class="wrapper">
+				<div class="inner">
+					<section>
+						<h4>Settings</h4>
+<!--						<form method="post" action="#"> -->
+							<div class="row uniform">
+								<!--
+								<div class="12u$">
+									<div class="select-wrapper">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Play Single -</option>
+										</select>
+									</div>
+								</div>
+								-->
+								<div class="12u$">
+									Duration:
+									<input type="text" name="music-duration" id="music-duration" placeholder="Duration" value="15" />
+								</div>
+								<!--
+								<div class="12u$(small)">
+									<input type="checkbox" id="demo-human" name="demo-human" checked>
+									<label for="demo-human">Do not repeat until all played</label>
+								</div>
+								-->
+								<div class="12u$">
+									Playlist:
+									<textarea name="music-collection" id="music-collection" placeholder="Enter your message" rows="6"></textarea>
+								</div>
+								<div class="12u$">
+									<ul class="actions">
+										<li><input onclick="save();" type="submit" value="Save" class="special" /></li>
+									</ul>
+								</div>
+						<!--</form> -->
+					</section>
+				</div>
+			</section>
+			
+			<!-- Three -->
+			<section id="two" class="wrapper style2 special">
+					<section class="inner">
+						<p>Original List</p>
+						<textarea disabled="disabled" rows="100%">
+01 Missa Pange lingua- Kyrie.mp3
+01 Motets on tenor Dominus- Factum est salutare-Dominus.mp3
+02 Missa Pange lingua- Kyrie.mp3
+02 Motets on tenor Dominus- Fole acostumance-Dominus.mp3
+03 Missa Pange lingua- Kyrie.mp3
+03 Motets on tenor Dominus- Fole acostumance-Dominus.mp3
+04 Mass for Christmas Day, Gregorian chant Mass, Introit.mp3
+04 Missa Pange lingua- Kredo.mp3
+04 Motets on tenor Dominus- Super te-Sed fulsit-Primus tenor-Dominus.mp3
+05 Mass for Christmas Day, Gregorian chant Mass, Introit.mp3
+05 Missa Pange lingua- Kredo.mp3
+05 Motets on tenor Dominus- Super te-Sed fulsit-Primus tenor-Dominus.mp3
+06 Mass for Christmas Day, Gregorian chant Mass, Introit.mp3
+06 Missa Pange lingua- Kredo.mp3
+07 Mass for Christmas Day, Gregorian chant Mass, Introit.mp3
+08 Mass for Christmas Day, Gregorian chant Mass, Kyrie.mp3
+09 Mass for Christmas Day, Gregorian chant Mass, Kyrie.mp3
+1 Ut Queant Laxis (Hymn to St. Joh.m4a
+10 Mass for Christmas Day, Gregorian chant Mass, Kyrie.mp3
+10 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+11 Mass for Christmas Day, Gregorian chant Mass, Kyrie.mp3
+11 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+12 Mass for Christmas Day, Gregorian chant Mass, Gloria.mp3
+12 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+13 Mass for Christmas Day, Gregorian chant Mass, Gradual.mp3
+13 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+14 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+15 Philippe de Vitry- In arboris-Tuba sacre fidei-Virgo sum, motet.mp3
+16 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+17 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+18 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+18 Mass for Christmas Day, Gregorian chant Mass, Credo.mp3
+19 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+20 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+21 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+22 Guillaume de Machaut- Kyrie, Messe de Nostre Dame.mp3
+23 Guillaume de Machaut- Foy porter, monophonic virelai.mp3
+24 Antiphon Tecum principium and psalm Dixit Dominus.mp3
+24 Guillaume de Machaut- Rose, liz, printemps, verdure, rondeau.mp3
+25 Antiphon Tecum principium and psalm Dixit Dominus.mp3
+25 Guillaume de Machaut- Rose, liz, printemps, verdure, rondeau.mp3
+26 Antiphon Tecum principium and psalm Dixit Dominus.mp3
+26 Guillaume de Machaut- Rose, liz, printemps, verdure, rondeau.mp3
+27 Antiphon Tecum principium and psalm Dixit Dominus.mp3
+27 Guillaume de Machaut- Rose, liz, printemps, verdure, rondeau.mp3
+28 Hymn- Christe Redemptor omnium.mp3
+29 Attributed to Wipo of Burgundy- Victimae paschali laudes, sequence.mp3
+30 Tropes on Puer natus- Quem queritis in presepe.mp3
+31 Jacopo da Bologna- Non al suo amante, madrigal.mp3
+31 Tropes on Puer natus- Quem queritis in presepe.mp3
+32 Jacopo da Bologna- Non al suo amante, madrigal.mp3
+32 Tropes on Puer natus- Quem queritis in presepe.mp3
+33 Gherardello da Firenze- Tosto che l'alba, caccia.mp3
+34 Gherardello da Firenze- Tosto che l'alba, caccia.mp3
+35 Francesco Landini- Non avra ma' pieta, ballata.mp3
+36 Francesco Landini- Non avra ma' pieta, ballata.mp3
+37 Francesco Landini- Non avra ma' pieta, ballata.mp3
+38 Alleluia, A Newe Work, carol.mp3
+39 Alleluia, A Newe Work, carol.mp3
+40 Alleluia, A Newe Work, carol.mp3
+41 Alleluia, A Newe Work, carol.mp3
+42 John Dunstable- Quam pulchra es, motet.mp3
+43 John Dunstable- Quam pulchra es, motet.mp3
+48 Organa from Musica enchiriadis, Tu patris sempiternus.mp3
+49 Organa from Musica enchiriadis, Sit gloria domini.mp3
+50 Organa from Musica enchiriadis, Rex caeli.mp3
+51 Alleluia Justus ut palma, free organum, from Ad organum faciendum.mp3
+51 Guillaume Du Fay- Se la face ay pale, ballade.mp3
+52 Alleluia Justus ut palma, free organum, from Ad organum faciendum.mp3
+52 Guillaume Du Fay- Se la face ay pale, ballade.mp3
+53 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+53 Jubilemus, exultemus, Aquitanian organum.mp3
+54 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+54 Jubilemus, exultemus, Aquitanian organum.mp3
+55 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+55 Jubilemus, exultemus, Aquitanian organum.mp3
+56 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+56 Jubilemus, exultemus, Aquitanian organum.mp3
+57 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+58 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+58 Leoninus and colleagues- Viderunt omnes, organum duplum.mp3
+59 Guillaume Du Fay- Gloria from Missa Se la face ay pale.mp3
+59 Leoninus and colleagues- Viderunt omnes, organum duplum.mp3
+60 Antoine Busnoys- Je ne puis vivre, virelai.mp3
+60 Leoninus and colleagues- Viderunt omnes, organum duplum.mp3
+61 Antoine Busnoys- Je ne puis vivre, virelai.mp3
+61 Leoninus and colleagues- Viderunt omnes, organum duplum.mp3
+62 Antoine Busnoys- Je ne puis vivre, virelai.mp3
+63 Jean de Ockeghem- Kyrie from Missa prolationum.mp3
+64 Jean de Ockeghem- Kyrie from Missa prolationum.mp3
+65 Dominus, clausula No. 26.mp3
+65 Jean de Ockeghem- Kyrie from Missa prolationum.mp3
+66 Dominus, clausula No. 29.mp3
+66 Henricus Isaac- Innsbruck, ich muss dich lassen, Lied.mp3
+67 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+67 Perotinus- Viderunt omnes, organum quadruplum.mp3
+68 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+69 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+70 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+71 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+72 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+73 Josquin des Prez- Ave Maria . . . virgo serena, motet.mp3
+79 Ave virgo virginum, conductus.mp3</textarea>
+					</section>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<p class="copyright">To my LOVE! &copy; By Max L. </p>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/musicStudy.js"></script>
+
+	</body>
+</html>
