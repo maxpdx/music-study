@@ -30,13 +30,10 @@ function init() {
 	
 	// Collection storage is NOT empty
 	if (typeof localStorage.collection === 'undefined' || 
-		localStorage.collection === null || 
-		!localStorage.playDuration
+		localStorage.collection === null
 	)
 	{
-		save();
-//		if (typeof localStorage.collection !== 'undefined' && localStorage.collection !== null)
-			playlistArray = JSON.parse(localStorage.collection);
+		$('#music-collection').val($("#originalList").val());
 	}
 	else
 	{
@@ -47,20 +44,15 @@ function init() {
 		
 		// Removing last "\n", don't need it.
 		text = text.substring(0, text.length - 1);
-
-		$('#music-duration').val(localStorage.playDuration);
 		$('#music-collection').val(text);
 	}
 	
-	PLAY_DURATION = localStorage.playDuration * 1;
+	$('#music-duration').val(localStorage.playDuration || PLAY_DURATION);
 	
-	for(var i = 0; i < playlistArray.length; i++)
-		playlist.push(new Track(playlistArray[i].id, playlistArray[i].name, playlistArray[i].src));
-	
-	playRandom();
+	save();
 }
 
-function save () {
+function save() {
 	stop();
 	
 	var musicDuration = $('#music-duration').val();
@@ -76,7 +68,7 @@ function save () {
 	if (collectionLines != "")
 	{
 		localStorage.removeItem("collection");
-		var playlist = [];
+		playlist = [];
 		for(var i = 0; i < collectionLines.length; i++)
 			playlist.push(new Track(i, collectionLines[i], DIRECTORY + collectionLines[i]));
 		
@@ -84,9 +76,9 @@ function save () {
 		console.log("New playlist saved");
 	}
 	else
-		alert("Can't save playlist, it is empty. :-(");
+		console.log("Can't save playlist, it is empty. :-(");
 	
-	init();
+	playRandom();
 }
 
 // play random song
@@ -97,9 +89,6 @@ function playRandom() {
 	currentAudio = playlist[currentAudioId].render();
 	
 	currentAudio.addEventListener("loadedmetadata", function () {
-		if(PLAY_DURATION == 0 || PLAY_DURATION == null)
-			PLAY_DURATION = currentAudio.duration;
-
 		// Getting random time to start.
 		getRandomStart();
 	
@@ -109,7 +98,7 @@ function playRandom() {
 
 function getRandomStart()
 {
-	var minStart = currentAudio.duration - PLAY_DURATION;
+	var minStart = currentAudio.duration - parseInt(localStorage.playDuration);
 	if(minStart < 0)
 		currentStartTime = 0;
 	else
@@ -125,7 +114,7 @@ function play() {
 	currentAudio.currentTime = currentStartTime;
 	currentAudio.addEventListener("canplaythrough", function () {
 		currentAudio.play();
-		stopTimer[stopTimer.length+1] = setTimeout(function(){ stop(); }, PLAY_DURATION * 1000);
+		stopTimer[stopTimer.length+1] = setTimeout(function(){ stop(); }, parseInt(localStorage.playDuration) * 1000);
 	}, false);
 }
 
@@ -139,9 +128,9 @@ function stop() {
 
 function getAnswer() {
 	var name = currentAudio.src.replace(/^.*[\\\/]/, '').replace(/(%20)/g, ' ');
-	var end = currentStartTime + PLAY_DURATION;
+	var end = currentStartTime + parseInt(localStorage.playDuration);
 	var start = "Played: " + currentStartTime + " to " + end + " sec";
 	var total = "Length: " + Math.ceil(currentAudio.duration) + " sec";
-	var current = "Current Duration: " + PLAY_DURATION + " seconds";
+	var current = "Current Duration: " + localStorage.playDuration + " seconds";
 	alert( name + "\n\n" + start + "\n" + total + "\n" + current);
 }
